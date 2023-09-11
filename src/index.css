@@ -1,0 +1,121 @@
+@import url('https://fonts.googleapis.com/css2?family=Bitter:wght@300&display=swap');
+
+*{margin: 0;
+padding: 0}
+
+.titulo {
+  text-align: center;
+  font-family: 'Bitter', serif;
+  padding: 30px;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  
+}
+
+nav {
+  margin-top: 20px;
+  max-width: 800px;
+  width: 100%;
+}
+
+ul {
+  display: flex;
+  justify-content: space-around;
+ 
+ 
+}
+
+li {
+  list-style: none;
+  border-top: 2px solid #fbfbfb;
+  border-bottom: 2px solid #fbfbfb;
+  padding: 3px;
+ 
+}
+li:hover{
+border-color: aqua;
+  
+}
+
+
+a {
+  text-decoration: none;
+  color: white;
+  
+  
+}
+.caritem {
+  position: fixed;
+  right: 60px;
+  top: 28px;
+}
+.greeting {
+  margin-top: 80px;
+  text-align: center;
+}
+.countSec{
+  background-color: gray;
+  width: 100%;
+  max-width: 500px;
+  border-radius: 50px;
+  padding: 10px;
+}
+.ItemCount {
+  display:flex;
+  justify-content: space-around;
+  
+}
+.plus, .min {
+background-color: gray;
+border: none;
+
+}
+.num, .alCarrito {
+  margin-bottom: 0;
+}
+.alCarrito {
+  background-color: rgb(187, 187, 187);
+  border-radius: 10px;
+  padding: 2px;
+}
+catalog-container {
+  text-align: center;
+}
+
+.destacado {
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.product-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.product-ind {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin: 10px;
+  min-width: 300px;
+  text-align: center;
+}
+
+.product-ind h2 {
+  font-size: 18px;
+  margin: 10px 0;
+}
+
+.product-ind img {
+  max-width: 100%;
+  height: auto;
+}
+
+.countSec {
+  margin-top: 10px;
+}
