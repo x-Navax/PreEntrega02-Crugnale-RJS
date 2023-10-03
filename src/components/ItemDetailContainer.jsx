@@ -1,33 +1,53 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import catalogo from "../components/catalogo.json";
+import { getFirestore, doc, getDoc } from 'firebase/firestore';
+import ItemCount from './ItemCount';
+
 
 const ItemDetailContainer = () => {
-  const { itemId } = useParams();
+  const { id } = useParams(); 
   const [product, setProduct] = useState(null);
+ 
 
   useEffect(() => {
-    
-    const selectedProduct = catalogo.find((producto) => producto.id === Number(itemId));
-    if (selectedProduct) {
-      setProduct(selectedProduct);
-    }
-  }, [itemId]);
+    const fetchProduct = async () => {
+      const db = getFirestore();
+      const productRef = doc(db, 'productos', id); 
+
+      try {
+        const productSnapshot = await getDoc(productRef);
+        if (productSnapshot.exists()) {
+          setProduct({ id: productSnapshot.id, ...productSnapshot.data() });
+        } else {
+          
+          console.log('El producto no existe');
+        }
+      } catch (error) {
+        
+        console.error('Error al obtener el producto:', error);
+      }
+    };
+
+    fetchProduct();
+  }, [id]);
 
   return (
-    <div className='detail-ind'>
-      {product ? (
-        <div className='item-detail'>
-          <h2>{product.title}</h2>
-          <p>Precio: ${product.price}</p>
-          <p>Descripción: {product.description}</p>
-          <p>Categoría: {product.category}</p>
-          <img src={product.image} alt={product.title} width={200} />
-          
+    <div className="catalog-container">
+      <div className='product-Detail'>
+        {product ? (
+        <div className="product-indDetail" key={product.id}>
+          <h2>{product.nombre}</h2>
+          <img src={product.imagen} alt={product.nombre} />
+          <h3>$ {product.precio}</h3>
+          <h4>{product.descripcion}</h4>
+          <h5>{product.categoria}</h5>
+          <ItemCount item={product} />
         </div>
       ) : (
-        <p>Producto no encontrado</p>
+        <p>Cargando producto...</p>
       )}
+      </div>
+      
     </div>
   );
 };
